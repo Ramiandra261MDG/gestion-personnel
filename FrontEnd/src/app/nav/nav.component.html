@@ -1,0 +1,34 @@
+<header>
+  @if (user$ | async ; as user) { @if (user.is_admin===1) {
+  <nav class="navbar">
+    <a routerLink="home">Home</a>
+    <a routerLink="personal">Tableau des personnels</a>
+    <a>Personnels inactif</a>
+  </nav>
+  } @else if (user.is_admin===0) {
+  <nav class="navbar">
+    <a routerLink="home">Home</a>
+  </nav>
+  } } @else {
+  <nav class="navbar">
+    <a></a>
+  </nav>
+  }
+</header>
+
+<!-- nav.component.html -->
+<!-- <header>
+  <ng-container *ngIf="user$ | async as user">
+    <nav class="navbar" *ngIf="user.is_admin === 1">
+      <a routerLink="home">Home</a>
+      <a routerLink="personal">Tableau des personnels</a>
+      <a>Personnels inactif</a>
+    </nav>
+    <nav class="navbar" *ngIf="user.is_admin === 0">
+      <a routerLink="home">Home</a>
+    </nav>
+  </ng-container>
+  <nav class="navbar" *ngIf="!(user$ | async)">
+    <a></a>
+  </nav>
+</header> -->

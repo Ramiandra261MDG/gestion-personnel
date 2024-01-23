@@ -1,0 +1,38 @@
+@if (!isLogin) {
+<div class="container">
+  <div class="auth-container">
+    <form [formGroup]="loginForm">
+      <h1>Login</h1>
+      <p-messages
+        [showTransitionOptions]="'500ms'"
+        [hideTransitionOptions]="'500ms'"
+      ></p-messages>
+      <label for="matr">Matricule:</label>
+      <input
+        type="text"
+        pInputText
+        class="p-inputtext-sm"
+        formControlName="matricule"
+        id="matr"
+      />
+
+      <label for="pass">Mot de passe:</label>
+
+      <div class="pass-container">
+        <input
+          type="password"
+          pInputText
+          class="p-inputtext-sm test"
+          formControlName="password"
+          id="pass"
+        />
+      </div>
+
+      <p-button
+        (click)="submitLogin()"
+        label="Se connecter"
+      ></p-button>
+    </form>
+  </div>
+</div>
+}

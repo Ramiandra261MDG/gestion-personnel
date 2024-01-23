@@ -1,0 +1,62 @@
+@if (personals && user_state.is_admin=== 1) {
+<div class="container">
+  <div class="">
+    <p-toast></p-toast>
+    <p>Bienvenu {{ user_state.prenom }} {{ user_state.nom }},</p>
+
+    <button
+      pButton
+      pRipple
+      (click)="logout()"
+      label="Se deconnecter"
+      class="p-button-sm"
+      style="margin-bottom: 15px"
+    ></button>
+  </div>
+  <p-table
+    [value]="personals"
+    [paginator]="true"
+    [first]="first"
+    [rows]="5"
+    styleClass="p-datatable-gridlines p-datatable-striped"
+    [tableStyle]="{ 'min-width': '50rem' }"
+    [lazy]="true"
+    [totalRecords]="totalRecords"
+    (onLazyLoad)="onPageChange($event)"
+    [loading]="loading"
+    [scrollable]="true"
+    scrollHeight="450px"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Matricule</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Poste</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-personals>
+      <tr>
+        <td>{{ personals.matricule }}</td>
+        <td>{{ personals.nom }}</td>
+        <td>{{ personals.prenom }}</td>
+        <td>{{ personals.poste }}</td>
+        <td>{{ personals.email }}</td>
+        <td>{{ personals.actif | status }}</td>
+        <td>
+          @if (personals.actif) {<p-button
+            (onClick)="desactivatePersonal(personals.id)"
+            label="Desactiver"
+            [outlined]="true"
+            severity="danger"
+          ></p-button
+          >}
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+}

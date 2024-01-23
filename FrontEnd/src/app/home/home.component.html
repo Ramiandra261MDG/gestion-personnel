@@ -1,0 +1,32 @@
+<div class="card">
+  @if(userConnected) {
+  <p-card
+    header="Information du personnel"
+    subheader="Matricule: {{ userConnected.matricule }}"
+    [style]="{ width: '380px' }"
+  >
+    <h2>
+      {{ userConnected.nom }}
+      {{ userConnected.prenom }}
+    </h2>
+
+    <p><span>Poste:</span> {{ userConnected.poste }}</p>
+    <p>
+      <span>Date d'embauche:</span>
+      {{ userConnected.date_embauche | date : "dd/MM/yyyy" }}
+    </p>
+    <p><span>Email:</span> {{ userConnected.email }}</p>
+
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        pRipple
+        (click)="logout()"
+        label="Se deconnecter"
+        class="p-button-sm"
+        style="margin-bottom: 15px"
+      ></button>
+    </ng-template>
+  </p-card>
+  }
+</div>
